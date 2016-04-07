@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleDrawerLayout</string>
+    <string name="open">openDrawer</string>
+    <string name="close">closeDrawer</string>
+</resources>
