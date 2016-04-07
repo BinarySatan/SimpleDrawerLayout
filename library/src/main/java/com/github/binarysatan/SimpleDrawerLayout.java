@@ -19,7 +19,7 @@ public class SimpleDrawerLayout extends ViewGroup {
 
     private View mDrawerView;
 
-    private boolean mIsRightToLeft;
+    private boolean mIsRightToLeft  =true;
     private boolean mIsOpen = true;
 
     private final int mDefaultInterspace = 100; //dp
@@ -71,10 +71,10 @@ public class SimpleDrawerLayout extends ViewGroup {
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             float proportion = Math.abs(releasedChild.getLeft() / (float) releasedChild.getWidth());
             if (mIsRightToLeft) {
-                mIsOpen = proportion<= 0.5;
+                mIsOpen = proportion <= 0.5;
                 mVDH.settleCapturedViewAt(proportion > 0.5 ? -releasedChild.getWidth() : 0, releasedChild.getTop());
             } else {
-                mIsOpen = proportion>0.5;
+                mIsOpen = proportion > 0.5;
                 mVDH.settleCapturedViewAt(proportion < 0.5 ? 0 : -releasedChild.getWidth(), releasedChild.getTop());
             }
             postInvalidate();
@@ -115,8 +115,10 @@ public class SimpleDrawerLayout extends ViewGroup {
         }
     }
 
-    private int dpToPx(int dps) {
-        return Math.round(getResources().getDisplayMetrics().density * dps);
+
+    public static int dpToPx(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
 
@@ -183,7 +185,7 @@ public class SimpleDrawerLayout extends ViewGroup {
             final int contentHeightSpec;
 
             if (i == 1) {
-                contenWidthtSpec = View.MeasureSpec.makeMeasureSpec(widthSize - mlp.leftMargin - mlp.rightMargin - dpToPx(mInterspace), widthMode);
+                contenWidthtSpec = View.MeasureSpec.makeMeasureSpec(widthSize - mlp.leftMargin - mlp.rightMargin - dpToPx(getContext(), mInterspace), widthMode);
                 contentHeightSpec = View.MeasureSpec.makeMeasureSpec(heightSize - mlp.topMargin - mlp.bottomMargin, heightMode);
             } else {
                 contenWidthtSpec = View.MeasureSpec.makeMeasureSpec(widthSize - mlp.leftMargin - mlp.rightMargin, widthMode);
