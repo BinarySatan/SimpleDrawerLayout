@@ -46,6 +46,7 @@ public class SimpleDrawerLayout extends ViewGroup {
 
         mVDH = ViewDragHelper.create(this, 1.0f, new VDHCallback());
         mVDH.setEdgeTrackingEnabled(ViewDragHelper.EDGE_LEFT);
+        ta.recycle();
     }
 
 

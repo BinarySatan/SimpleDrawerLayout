@@ -19,8 +19,7 @@ easy to use
         android:layout_below="@id/toolBar"
         app:interspace="40dp">
 ````
-        
-        
+
 ![](http://ww1.sinaimg.cn/mw690/0062ev2Wjw1f2o7avk4r8j307p0dh0t0.jpg)
 
 
